@@ -1,0 +1,32 @@
+'use client';
+import { useState, useEffect } from 'react';
+
+export type Breakpoint = 'mobile' | 'tablet' | 'desktop';
+
+export function useBreakpoint(): Breakpoint {
+  const [bp, setBp] = useState<Breakpoint>('desktop');
+
+  useEffect(() => {
+    const update = () => {
+      const w = window.innerWidth;
+      if (w < 640) setBp('mobile');
+      else if (w < 1024) setBp('tablet');
+      else setBp('desktop');
+    };
+    update();
+    window.addEventListener('resize', update, { passive: true });
+    return () => window.removeEventListener('resize', update);
+  }, []);
+
+  return bp;
+}
+
+export function useIsMobile(): boolean {
+  const bp = useBreakpoint();
+  return bp === 'mobile';
+}
+
+export function useIsTabletOrBelow(): boolean {
+  const bp = useBreakpoint();
+  return bp !== 'desktop';
+}

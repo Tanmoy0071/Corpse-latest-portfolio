@@ -1,0 +1,86 @@
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+@font-face { font-family:'HelveticaCompressed'; src:url('/fonts/HelveticaCompressed.otf') format('opentype'); }
+@font-face { font-family:'Naston'; src:url('/fonts/Naston-Regular.ttf') format('truetype'); }
+@font-face { font-family:'SuisseIntl'; src:url('/fonts/SuisseIntl-Regular.ttf') format('truetype'); font-weight:400; }
+@font-face { font-family:'SuisseIntl'; src:url('/fonts/SuisseIntl-Light.ttf') format('truetype'); font-weight:300; }
+@font-face { font-family:'SuisseIntlMono'; src:url('/fonts/SuisseIntlMono-Regular.ttf') format('truetype'); }
+@font-face { font-family:'BreulGroteskA'; src:url('/fonts/BreulGroteskA-Light.ttf') format('truetype'); }
+
+:root {
+  --red:#E8191A; --red-dark:#B81213; --red-muted:#3D0A0A;
+  --black:#0A0A0A; --white:#F5F5F0;
+  --g100:#1A1A1A; --g200:#2A2A2A; --g300:#3D3D3D;
+  --g400:#6B6B6B; --g500:#9A9A9A; --g600:#CCCCCC;
+  --ease: cubic-bezier(0.16,1,0.3,1);
+  --font-display:'HelveticaCompressed','Arial Narrow',sans-serif;
+  --font-brand:'Naston',serif;
+  --font-ui:'SuisseIntl','Helvetica Neue',sans-serif;
+  --font-sub:'BreulGroteskA','Helvetica Neue',sans-serif;
+  --font-mono:'SuisseIntlMono','Courier New',monospace;
+}
+
+*, *::before, *::after { box-sizing:border-box; }
+html { scroll-behavior:smooth; -webkit-text-size-adjust:100%; }
+body { background:var(--black); color:var(--white); font-family:var(--font-ui); overflow-x:hidden; cursor:none; -webkit-font-smoothing:antialiased; }
+img, video { max-width:100%; height:auto; }
+a { color:inherit; text-decoration:none; }
+button { cursor:none; }
+::selection { background:var(--red); color:#fff; }
+::-webkit-scrollbar { width:4px; }
+::-webkit-scrollbar-track { background:var(--black); }
+::-webkit-scrollbar-thumb { background:var(--red); }
+
+/* Cursor */
+#ca-cursor { position:fixed; width:32px; height:32px; border:1px solid rgba(232,25,26,0.5); border-radius:50%; pointer-events:none; z-index:9998; transform:translate(-50%,-50%); transition:width 200ms var(--ease), height 200ms var(--ease), border-color 200ms; }
+#ca-cursor-dot { position:fixed; width:5px; height:5px; background:var(--red); border-radius:50%; pointer-events:none; z-index:9999; transform:translate(-50%,-50%); }
+
+/* Noise */
+#noise-canvas { position:fixed; inset:0; pointer-events:none; z-index:1; opacity:0.35; }
+
+/* Page transition */
+#page-transition { position:fixed; inset:0; background:var(--red); z-index:9000; transform:scaleY(0); transform-origin:bottom; pointer-events:none; }
+
+/* Scroll reveal */
+.reveal { opacity:0; transform:translateY(32px); transition:opacity 0.7s var(--ease), transform 0.7s var(--ease); }
+.reveal.revealed { opacity:1; transform:translateY(0); }
+.reveal-left { opacity:0; transform:translateX(-40px); transition:opacity 0.7s var(--ease), transform 0.7s var(--ease); }
+.reveal-left.revealed { opacity:1; transform:translateX(0); }
+.reveal-scale { opacity:0; transform:scale(0.92); transition:opacity 0.6s var(--ease), transform 0.6s var(--ease); }
+.reveal-scale.revealed { opacity:1; transform:scale(1); }
+.delay-1 { transition-delay:0.1s !important; }
+.delay-2 { transition-delay:0.2s !important; }
+.delay-3 { transition-delay:0.3s !important; }
+.delay-4 { transition-delay:0.4s !important; }
+.delay-5 { transition-delay:0.5s !important; }
+
+/* Nav — scroll & underline states managed inline in Navbar.tsx */
+
+/* Marquee */
+.marquee-track { display:flex; gap:0; white-space:nowrap; animation:marquee 28s linear infinite; }
+@keyframes marquee { from{transform:translateX(0)} to{transform:translateX(-33.33%)} }
+
+/* Hero animations */
+.hero-title .word { display:inline-block; animation:slideUp 0.8s var(--ease) both; }
+@keyframes slideUp { from{transform:translateY(110%);opacity:0} to{transform:translateY(0);opacity:1} }
+.hero-title .line:nth-child(1) .word { animation-delay:0.1s; }
+.hero-title .line:nth-child(2) .word { animation-delay:0.25s; }
+@keyframes fadeIn { from{opacity:0;transform:translateY(12px)} to{opacity:1;transform:translateY(0)} }
+@keyframes pulse { from{opacity:0.5;transform:scale(0.95)} to{opacity:1;transform:scale(1.05)} }
+@keyframes scrollLine { 0%,100%{transform:scaleY(1);opacity:1} 50%{transform:scaleY(0.4);opacity:0.4} }
+@keyframes blink { 0%,100%{opacity:1} 50%{opacity:0.3} }
+
+/* Event card */
+.ev-card::after { content:''; position:absolute; bottom:0; left:0; right:0; height:2px; background:var(--red); transform:scaleX(0); transform-origin:left; transition:transform 300ms var(--ease); }
+.ev-card:hover::after { transform:scaleX(1); }
+
+/* Bracket player */
+.bracket-player.winner .bp-score { color:var(--red); }
+
+/* Big quote */
+.big-quote::before { content:''; position:absolute; left:0; top:8px; bottom:8px; width:3px; background:var(--red); }
+
+/* Counters */
+[data-count] { display:inline-block; }

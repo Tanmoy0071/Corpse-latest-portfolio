@@ -1,7 +1,6 @@
 "use client";
 import { useBreakpoint } from "@/hooks/useBreakpoint";
 import { useNav } from "@/context/NavContext";
-import type { Page } from "@/lib/data";
 
 export default function Footer() {
   const bp = useBreakpoint();
@@ -270,10 +269,11 @@ export default function Footer() {
           <h4 style={{ margin: 0, fontFamily: "var(--font-mono)", fontSize: "10px", color: "var(--g300)", letterSpacing: "0.1em", textTransform: "uppercase" }}>Platform</h4>
           {(
             [
-              { label: "PRIVACY POLICY", page: "privacy" },
-              { label: "TERMS OF SERVICE", page: "terms" },
-              { label: "HELP CENTRE", page: "contact" },
-            ] as { label: string; page: Page }[]
+              { label: "PRIVACY POLICY", page: "privacypolicy" },
+              { label: "TERMS OF SERVICE", page: "terms&condition" },
+              { label: "HELP CENTRE", page: "support" },
+              { label: "CONTACT US", page: "contactsupport" },
+            ] as { label: string; page: string }[]
           ).map(({ label, page }) => (
             <a
               key={label}
@@ -301,11 +301,11 @@ export default function Footer() {
           <h4 style={{ margin: 0, fontFamily: "var(--font-mono)", fontSize: "10px", color: "var(--g300)", letterSpacing: "0.1em", textTransform: "uppercase" }}>Accounts</h4>
           {(
             [
-              { label: "ACCOUNT POLICY", page: "account-management" },
-              { label: "KYC POLICY", page: "kyc-policy" },
-              { label: "SIGN OUT POLICY", page: "signout-policy" },
-              { label: "SUSPENSIONS", page: "account-suspension" },
-            ] as { label: string; page: Page }[]
+              { label: "ACCOUNT POLICY", page: "creation&deletion" },
+              { label: "KYC POLICY", page: "kycmodification" },
+              { label: "SIGN OUT POLICY", page: "signout" },
+              { label: "SUSPENSIONS", page: "suspension&ban" },
+            ] as { label: string; page: string }[]
           ).map(({ label, page }) => (
             <a
               key={label}
@@ -333,10 +333,10 @@ export default function Footer() {
           <h4 style={{ margin: 0, fontFamily: "var(--font-mono)", fontSize: "10px", color: "var(--g300)", letterSpacing: "0.1em", textTransform: "uppercase" }}>Competitive</h4>
           {(
             [
-              { label: "ARENA RULES", page: "arena-terms" },
-              { label: "GUILD POLICY", page: "guild-policy" },
-              { label: "FAIR PLAY", page: "fairplay" },
-            ] as { label: string; page: Page }[]
+              { label: "ARENA RULES", page: "arena" },
+              { label: "GUILD POLICY", page: "guildpolicy" },
+              { label: "FAIR PLAY", page: "contestrules" },
+            ] as { label: string; page: string }[]
           ).map(({ label, page }) => (
             <a
               key={label}
@@ -364,9 +364,10 @@ export default function Footer() {
           <h4 style={{ margin: 0, fontFamily: "var(--font-mono)", fontSize: "10px", color: "var(--g300)", letterSpacing: "0.1em", textTransform: "uppercase" }}>Legal & Finance</h4>
           {(
             [
-              { label: "TRANSACTIONS", page: "transaction-policy" },
-              { label: "IP & COPYRIGHT", page: "ip-copyright" },
-            ] as { label: string; page: Page }[]
+              { label: "TRANSACTIONS", page: "transaction" },
+              { label: "IP & COPYRIGHT", page: "ipandcopyright" },
+              { label: "LEGALS", page: "legals" },
+            ] as { label: string; page: string }[]
           ).map(({ label, page }) => (
             <a
               key={label}
